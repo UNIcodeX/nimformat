@@ -12,10 +12,12 @@ NOTE: This was done using the latest development version of Nim, which is 0.19.9
 
 Simple benchmarks with Python's `timeit` module yield the following results. See `test_nimformat.py` for more details.
 ```
-Nim native lib time               : 0.2805021211668687
-Nim native lib (no locals()) time : 0.0011517009147203883
-Pure Python time                  : 1.65258414582814e-05
-Pure Python (no locals()) time    : 1.352114301134133e-05
+Pure Python time                       : 1.7126781147680623e-05
+Pure Python [no locals()] time         : 1.8929600215857533e-05
+Nim dylib time                         : 0.2829040771053697
+Nim dylib [no locals()] time           : 0.0016501803870713205
+Nim dylib sub_multi time               : 0.29930432216857517
+Nim dylib sub_multi [no locals()] time : 0.0007848272343464746
 ```
 
 
