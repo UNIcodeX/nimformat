@@ -1,16 +1,22 @@
 import nimpy, tables, pylib, re, strutils
 
 #[
-  Build with:
-    nim c --threads:on --app:lib --out:nimformat.pyd --tlsEmulation:off nimformat.nim
+  Build Debug:
+    nim c --app:lib --out:nimformat.[pyd|so] nimformat.nim
+
+  Build Release:
+  nim c --app:lib --out:nimformat.[pyd|so] -d:release nimformat.nim
 ]#
+
+# TODO: Add exception handling in case the passed in type(s) are not what is reqired by the procs.
+# TODO: Possibly related to above... Check type of passed in parameters and raise an error gracefully.
 
 proc nim_sub*(s: string, dict: Table[string, string]): string {.exportpy.} =
   ## nim_sub(string, dict)
   ## 
   ## Receives a string in which all variables to be substituted are in the format 
-  ## {variable}, as well as a dictionary in {'variable': 'value'} format.
-  ## For each variable in the dictionary the function substitutes the value for the 
+  ## {variable}, as well as a dictionary in {'variable': 'value'} format. For each
+  ## variable in the dictionary the function substitutes the value for the 
   ## variable name.
   ##
   ## Returns the supplied string with all substitutions applied.
@@ -27,10 +33,10 @@ proc nim_sub*(s: string, dict: Table[string, string]): string {.exportpy.} =
   ## variable1 = 'string'
   ## variable2 = 'contains'
   ##
-  ## nimFormatEnv = dict(locals())
-  ## nimFormatEnv = {str(key): str(nimFormatEnv[key]) for key in nimFormatEnv.keys() if '__' not in str(key)}
+  ## dSubs = dict(locals())
+  ## dSubs = {str(k): str(dSubs[k]) for k in dSubs.keys() if '__' not in str(k)}
   ##
-  ## strSubstituted = nimformat.nim_sub(strWithSubstitutions, nimFormatEnv)
+  ## strSubstituted = nimformat.nim_sub(strWithSubstitutions, dSubs)
   ## print(strSubstituted)
   ## 
   ## This is a string which spans
@@ -44,6 +50,10 @@ proc nim_sub*(s: string, dict: Table[string, string]): string {.exportpy.} =
 
 
 proc nim_sub_multi*(s: string, dict: Table[string, string]): string {.exportpy.} =
+  ## nim_sub_multi(string, dict)
+  ##
+  ## Does the same thing as nim_sub(), but much more efficiently for substitution
+  ## operations involving more than one variable.
   var
     s = s
     d = @[("", "")]
