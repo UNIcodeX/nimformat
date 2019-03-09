@@ -1,4 +1,4 @@
-nim c --app:lib --out:nimformat.so --compileOnly:on ./src/nimformat.nim
+nim c --app:lib --out:nimformat.so --compileOnly -d:release ./src/nimformat.nim
 cp /usr/lib/nim/nimbase.h ./
 cp ~/.cache/nim/nimformat_d/*.c ./
 cp ~/.cache/nim/nimformat_d/*.h ./
