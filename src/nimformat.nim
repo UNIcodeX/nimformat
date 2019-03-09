@@ -22,7 +22,6 @@ proc nim_sub*(s: string, dict: Table[string, string]): string {.exportpy.} =
   ## strWithSubstitutions = '''
   ## This is a {variable1} which spans
   ## multiple lines and {variable2} multiple
-  ## substitutions.
   ## '''
   ##
   ## variable1 = 'string'
@@ -55,42 +54,43 @@ proc nim_sub_multi*(s: string, dict: Table[string, string]): string {.exportpy.}
   result = s.multiReplace(d)
 
 
-proc test_nim_sub*() {.exportpy.} =
-  ## Tests the functionality of nim_sub()
-  var
-    # table_sub = initTable[string, string]()
-    table_sub = {"": ""}.toTable
-    strTest: string
-  table_sub["variable1"] = "string"
-  table_sub["variable2"] = "contains"
+when not defined(release):
+  proc test_nim_sub*() {.exportpy.} =
+    ## Tests the functionality of nim_sub()
+    var
+      # table_sub = initTable[string, string]()
+      table_sub = {"": ""}.toTable
+      strTest: string
+    table_sub["variable1"] = "string"
+    table_sub["variable2"] = "contains"
 
-  # echo(type(table_sub))
-  # echo(table_sub)
+    # echo(type(table_sub))
+    # echo(table_sub)
 
-  strTest = """
-  This is a {variable1} which spans
-  multiple lines and {variable2} multiple
-  substitutions.
-  """  
+    strTest = """
+    This is a {variable1} which spans
+    multiple lines and {variable2} multiple
+    substitutions.
+    """  
 
-  let result = nim_sub(strTest, table_sub)
-  echo(result)
+    let result = nim_sub(strTest, table_sub)
+    echo(result)
 
 
-proc test_nim_sub_multi*() {.exportpy.} =
-  ## Tests the functionality of nim_sub()
-  var
-    # table_sub = initTable[string, string]()
-    table_sub = {"": ""}.toTable
-    strTest: string
-  table_sub["variable1"] = "string"
-  table_sub["variable2"] = "contains"
+  proc test_nim_sub_multi*() {.exportpy.} =
+    ## Tests the functionality of nim_sub()
+    var
+      # table_sub = initTable[string, string]()
+      table_sub = {"": ""}.toTable
+      strTest: string
+    table_sub["variable1"] = "string"
+    table_sub["variable2"] = "contains"
 
-  strTest = """
-  This is a {variable1} which spans
-  multiple lines and {variable2} multiple
-  substitutions.
-  """  
+    strTest = """
+    This is a {variable1} which spans
+    multiple lines and {variable2} multiple
+    substitutions.
+    """  
 
-  let result = nim_sub_multi(strTest, table_sub)
-  echo(result)
+    let result = nim_sub_multi(strTest, table_sub)
+    echo(result)

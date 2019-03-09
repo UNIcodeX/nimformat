@@ -4,3 +4,4 @@ nimcache/
 *.c
 *.h
 *.egg
+*.zip

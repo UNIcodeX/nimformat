@@ -29,7 +29,6 @@ stdlib_io.c
 stdlib_iterators.c
 stdlib_json.c
 stdlib_lexbase.c
-stdlib_locks.c
 stdlib_macros.c
 stdlib_math.c
 stdlib_options.c
@@ -45,7 +44,6 @@ stdlib_random.c
 stdlib_re.c
 stdlib_rtarrays.c
 stdlib_sequtils.c
-stdlib_sharedlist.c
 stdlib_streams.c
 stdlib_strformat.c
 stdlib_strscans.c
