@@ -1,2 +1,5 @@
 *.pyd
 *.so
+nimcache/
+*.c
+*.h
