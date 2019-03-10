@@ -39,9 +39,7 @@ Times
 |---------------------------------------|------------------|
 |Pure Python time                       | .000202s         |
 |Pure Python [no locals()] time         | .000286s         |
-|Nim dylib time                         | .326346s         |
 |Nim dylib [no locals()] time           | .000547s         |
-|Nim dylib sub_multi time               | .358278s         |
 |Nim dylib sub_multi [no locals()] time | .000220s         |
 
 See `test_nimformat.py` for more details.
