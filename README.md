@@ -2,6 +2,8 @@
 
 The nimformat library is the result of an experiment in using the excellent nimpy module, for the awesome Nim programming language, to create a test library, for Python. The goal was to learn some about Nim, nimpy, creating native Python modules, and to see what, if any, speed boosts could be realized.
 
+Currently, there are negligible, if any differences in speed between Python and Nim native library when passing in a new dict of values. Experiments may continue.
+
 The `nim_sub()` function is a rudimentary implementation of string substitution in a similar way to how Python accepts a dictionary for its `string.format()`.
 
 
@@ -35,12 +37,12 @@ Times
 -----
 |Test                                   | Time to Complete |
 |---------------------------------------|------------------|
-|Pure Python time                       | 1.71267s         |
-|Pure Python [no locals()] time         | 1.89296s         |
-|Nim dylib time                         | 0.28290s         |
-|Nim dylib [no locals()] time           | 0.00165s         |
-|Nim dylib sub_multi time               | 0.29930s         |
-|Nim dylib sub_multi [no locals()] time | 0.00078s         |
+|Pure Python time                       | .000202s         |
+|Pure Python [no locals()] time         | .000286s         |
+|Nim dylib time                         | .326346s         |
+|Nim dylib [no locals()] time           | .000547s         |
+|Nim dylib sub_multi time               | .358278s         |
+|Nim dylib sub_multi [no locals()] time | .000220s         |
 
 See `test_nimformat.py` for more details.
 
