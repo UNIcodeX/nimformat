@@ -4,21 +4,46 @@ The nimformat library is the result of an experiment in using the excellent nimp
 
 The `nim_sub()` function is a rudimentary implementation of string substitution in a similar way to how Python accepts a dictionary for its `string.format()`.
 
+
+# Install
+- `pip install nimformat`
+
+
+# Build it yourself
 The Nim native Python library can be built by issuing the following command.
 
-`nim c --threads:on --app:lib --out:nimformat.pyd --tlsEmulation:off nimformat.nim`
+Debug:
+`nim c --app:lib --out:nimformat.pyd nimformat.nim`
 
-NOTE: This was done using the latest development version of Nim, which is 0.19.9 at the time of this writing.
+Production:
+`nim c --app:lib --out:nimformat.pyd -d:release nimformat.nim`
 
-Simple benchmarks with Python's `timeit` module yield the following results. See `test_nimformat.py` for more details.
+**NOTE:** This was done using the latest development version of Nim, which is 0.19.9 at the time of this writing.
+
+
+# Benchmarks
+Simple benchmarks with Python's `timeit` module yield the following results. Tests were done with the following options for `timeit`:
+```python
+timeit.repeat(
+  setup=SETUP_CODE,
+  stmt=TEST_CODE,
+  repeat=3,
+  number=20
+  )
 ```
-Pure Python time                       : 1.71267s
-Pure Python [no locals()] time         : 1.89296s
-Nim dylib time                         : 0.28290s
-Nim dylib [no locals()] time           : 0.00165s
-Nim dylib sub_multi time               : 0.29930s
-Nim dylib sub_multi [no locals()] time : 0.00078s
-```
+Times
+-----
+|Test                                   | Time to Complete |
+|---------------------------------------|------------------|
+|Pure Python time                       | 1.71267s         |
+|Pure Python [no locals()] time         | 1.89296s         |
+|Nim dylib time                         | 0.28290s         |
+|Nim dylib [no locals()] time           | 0.00165s         |
+|Nim dylib sub_multi time               | 0.29930s         |
+|Nim dylib sub_multi [no locals()] time | 0.00078s         |
+
+See `test_nimformat.py` for more details.
+
 
 # Use
 
@@ -58,10 +83,6 @@ substitutions.
 
 strSubstituted = nimformat.nim_sub(strWithSubstitutions, dictSub)
 ```
-
-# Install
-
-- `pip install nimformat`
 
 # Platforms
 
